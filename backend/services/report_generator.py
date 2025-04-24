@@ -88,15 +88,19 @@ def convertir_en_pdf(docx_path):
         pypandoc.convert_file(docx_path, 'pdf', outputfile=temp_pdf.name)
         return temp_pdf.name
     except Exception as e:
-        print("⚠️ Conversion PDF échouée :", e)
+        print(f"⚠️ Conversion PDF échouée : {e}")
         return None
 
 def generer_rapport_complet():
-    df = pd.read_csv(DATA_PATH)
-    resume = generer_resume_donnees(df)
-    texte = generer_contenu_gpt(resume)
+    try:
+        df = pd.read_csv(DATA_PATH)
+        resume = generer_resume_donnees(df)
+        texte = generer_contenu_gpt(resume)
 
-    images = [os.path.join(IMG_DIR, name) for name in GRAPH_NAMES]
-    docx_path = generer_rapport_docx(texte, images=images)
-    pdf_path = convertir_en_pdf(docx_path)
-    return docx_path, pdf_path
+        images = [os.path.join(IMG_DIR, name) for name in GRAPH_NAMES]
+        docx_path = generer_rapport_docx(texte, images=images)
+        pdf_path = convertir_en_pdf(docx_path)
+        return docx_path, pdf_path
+    except Exception as e:
+        print(f"❌ Erreur lors de la génération du rapport : {e}")
+        return None, None
