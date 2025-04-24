@@ -1,0 +1,28 @@
+# Fichiers sensibles
+.env
+
+# Données brutes et nettoyées
+data/donnees_brutes.csv
+data/donnees_nettoyees.csv
+data/resume_donnees.txt
+
+# Visuels et images générés
+data/visuels/*.png
+
+# Rapports et fichiers de sortie
+outputs/rapports/*.docx
+outputs/rapports/*.pdf
+outputs/logs/*.csv
+
+# Environnements virtuels
+.venv/
+venv/
+__pycache__/
+
+# Fichiers temporaires
+*.pyc
+*.ipynb_checkpoints
+*.DS_Store
+
+# Notebooks convertis et backups
+*.ipynb~
